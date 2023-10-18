@@ -45,7 +45,7 @@ const DELETE_CAR = async (req, res) => {
     const result = await db.query(
       `DELETE FROM public.cars_table WHERE id = ${req.params.id}`
     );
-    if (result.rowCount === 0) {
+    if (!result.rowCount) {
       return res.status(404).json({ response: "Car not found" });
     }
     return res.json({ status: "Car was deleted" });
